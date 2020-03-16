@@ -1,0 +1,168 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This package contains formatting commands for the
+% University of York thesis specifications. 
+%
+% It defines the following commands: 
+%
+% 1) \author, \title, \doctype, \degree, \major, \publicationyear, \advisor, \committeeMember,
+%    - user-defined variables for setting up the preliminary pages.
+% 2) \maketitlepage, \makecopyright, generates the appropriate preliminary pages.
+%
+% HISTORY
+%
+% (2020) This stylefile is based on the FAAM standard document template
+%        modified for University of York thesis specifications by G Nott.
+%        https://www.york.ac.uk/research/graduate-school/academic/thesis/format/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+%Define
+
+%headers and footers
+%titlepage
+%    title
+%    author/s
+%    version
+%    date
+%    document number
+%    pertinent contacts (eg LSA: name, HSA: name, etc)
+%    URLs
+%Changelog/history table at back
+%References/bibliography (as [n])
+
+ 
+\ProvidesPackage{UniYork_thesis}[2020/03/01 v0.1]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{fontspec}
+%\RequirePackage{helvet,mathptmx,graphics}
+%\RequirePackage[pdftex,colorlinks=true]{hyperref}
+\RequirePackage{ifthen,calc}
+%\RequirePackage[usenames,dvipsnames]{color}
+\RequirePackage{fancyhdr}
+
+
+
+%%%% Define fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Use combination of Alegreya and AlegreyaSans
+%
+% This will fall over if these fonts are not installed.
+% Need to include a \IfFontExistsTF{...
+% dl from https://fontpair.co/downloads/Alegreya%20Sans%20and%20Alegreya.zip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{Alegreya}[
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+%    SmallCapsFont = AlegreyaSC-Regular.otf, % Can't get this to work
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic
+]
+
+\setsansfont{AlegreyaSans}[
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic
+]
+
+
+
+
+%%%% Define page margins etc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University of York requirements are:
+% * inner margin >= 40mm
+% * all other margins >= 15mm
+% * Headers and footers/page numbers should be within the recommended margins at 
+%   the top and bottom of the page and preferably no nearer the edge of the 
+%   paper than half the margin width.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[inner=40mm,
+            includeheadfoot=false,
+            headheight=10mm,
+            footskip=20mm+1ex]{geometry}
+
+%%% TODO: Sort out header and footer lengths
+
+
+%%%% Define Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The title page of every volume shall give the following information in the
+% order listed, and on separate lines:
+% * The full title of the thesis and any subtitle
+% * The total number of volumes, if more than one, and the number of the
+%   particular volume
+% * The full name of the author, followed, if desired, by any qualifications and
+%   distinctions
+% * The qualification for which the thesis is submitted (e.g., PhD or
+%   MA by Research, etc)
+% * The name of the University
+% * The name of the Department or Centre in which the research was conducted
+% * The month and year the thesis was first submitted for examination.
+% The titlepage is counted as the first page although np page number is shown.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Define titlepage variables
+% Document volume, shown if thesis consists of more than one volume
+\newcommand*{\docvol}[1]{\gdef\@docvol{#1}}
+\newcommand*{\@docvol}{\textit{n}}
+% Total number of volumes in thesis
+\newcommand*{\totalvol}[1]{\gdef\@totalvol{#1}}
+\newcommand*{\@totalvol}{\textit{x}}
+% Type of degree. If not given then default is 'PhD'
+\newcommand*{\degree}[1]{\gdef\@degree{#1}}
+\newcommand*{\@degree}{undefined}
+% University. If not given default is 'University of York'
+\newcommand*{\university}[1]{\gdef\@university{#1}}
+\newcommand*{\@university}{undefined}
+% University department/centre. If not given default is WACL.
+\newcommand*{\dept}[1]{\gdef\@dept{#1}}
+\newcommand*{\@dept}{undefined}
+
+
+% Create the document titlepage
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+\sffamily
+\bfseries
+\begin{center}
+\vspace*{3cm}
+{\huge\@title\unskip\strut\par}
+\vspace{2cm}
+{\huge\@author\unskip\strut\par}
+\vspace{4cm minus 2cm}
+\ifthenelse{%
+    \equal{\@degree}{undefined}}%
+    {\Large{PhD\\}}%
+    {\large\@degree\\}
+\vspace{2cm}
+\ifthenelse{%
+    \equal{\@university}{undefined}}%
+    {\Large{University of York\\}}%
+    {\Large\@university\\}
+\vspace{1cm}
+\ifthenelse{%
+    \equal{\@dept}{undefined}}%
+    {\Large{WACL\\}}%
+    {\Large\@dept\\}
+\vspace{1cm}
+\@date\unskip\\
+\vfill
+\end{center}
+\end{titlepage}
+\thispagestyle{empty}
+
+\pagebreak
+}
+
+
+
+% Remove dotted lines from table of contents
+\makeatletter
+\addtocontents{toc}{\def\string\@dotsep{200}}
+\makeatother
+
+
+
+\endinput
