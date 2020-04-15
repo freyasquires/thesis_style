@@ -1,6 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% This file is:	'fsthesis.cls'
+%% This file is: 'fsthesis.cls'
 %%
 %% Written by: Graeme Nott, Apr 2020
 %%
@@ -21,35 +21,33 @@
 %
 % HISTORY
 %
-% (2020) This stylefile is based on the FAAM standard document template
-%        modified for University of York thesis specifications by G Nott.
-%        https://www.york.ac.uk/research/graduate-school/academic/thesis/format/
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+% (2020) Class file created based on GN's thesis class. Brought up to date but
+%        is still some TeX. Mainly used for chapter heading formatting. Specs
+%        for University of York thesis added.
+%        www.york.ac.uk/research/graduate-school/academic/thesis/format/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% ==IDENTIFICATION====================================================
+%% ==IDENTIFICATION===========================================================
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsthesis}[v0.1 Freya Squires' University of York Thesis Class]
 
-%% ==DEFINE OPTIONS====================================================
+%% ==DEFINE OPTIONS===========================================================
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 %- All user-defined options are passed to book.cls
 
 \ProcessOptions\relax
 
-%% ==LOAD PREREQUISITES================================================
+%% ==LOAD PREREQUISITES=======================================================
 \LoadClass[12pt,a4paper]{book}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fontspec}
 \RequirePackage{ifthen,calc}
 \RequirePackage{fancyhdr}
 
-%% ==MAIN CODE=========================================================
+%% ==MAIN CODE================================================================
 
 %% -- Define fonts -----------------------------------------------------------
 %% Use combination of Alegreya and AlegreyaSans
@@ -91,7 +89,7 @@
 %%% TODO: Sort out header and footer lengths
 % \raggedbottom
 
-%% --Define some marco shortcuts---------------------------------------
+%% --Define some marco shortcuts----------------------------------------------
 
 \newcommand{\etal}{~\textit{et\,al.}}
 
@@ -114,11 +112,6 @@
 %%
 %% The titlepage is counted as the first page but no page number is shown.
 %% ---------------------------------------------------------------------------
-
-%% 1) \author, \title, \doctype, \degree, \major, \publicationyear, \advisor, \committeeMember,
-%    - user-defined variables for setting up the preliminary pages.
-% 2) \maketitlepage, \makecopyright, generates the appropriate preliminary pages.
-
 
 % Define titlepage variables
 % Document volume, shown if thesis consists of more than one volume
@@ -145,9 +138,9 @@
 \bfseries
 \begin{center}
 \vspace*{3cm}
-{\huge\@title\unskip\strut\par}
+{\bfseries\fontsize{30pt}{30pt}\selectfont\@title\unskip\strut\par}
 \vspace{2cm}
-{\huge\@author\unskip\strut\par}
+{\bfseries\fontsize{30pt}{30pt}\selectfont\@author\unskip\strut\par}
 \vspace{4cm minus 2cm}
 \ifthenelse{%
     \equal{\@degree}{undefined}}%
@@ -233,7 +226,7 @@
 % \makeatother
 
 
-%% --Float captions----------------------------------------------------
+%% --Float captions-----------------------------------------------------------
 %- Makes figure ? bold san serif and the text single spaced
 \setlength\abovecaptionskip{0\p@}%	was 10
 \setlength\belowcaptionskip{5\p@}
@@ -249,7 +242,7 @@
   \fi
   \vskip\belowcaptionskip}
 
-%% --Section headings--------------------------------------------------
+%% --Section headings---------------------------------------------------------
 %- Makes headings all bold san serif of different sizes
 
 \renewcommand\section{\@startsection{section}{1}{\z@}%
@@ -267,7 +260,8 @@
                             {1.5ex \@plus .2ex}%
                             {\raggedright\sffamily\normalsize\bfseries}}%
                            % {\raggedright\sffamily\normalsize\bfseries}}%
-%% --Chapter headings--------------------------------------------------
+
+%% --Chapter headings---------------------------------------------------------
 %- Makes chapter titles big, bold, and serif. Chapter number is
 %- very big on outer edge. Starred version has no number.
 % Note: \m@ne = -1, \p@ = pt
@@ -288,7 +282,7 @@
       \raggedright\bfseries\fontsize{30pt}{30pt}\selectfont#1}
 %      \raggedright\sffamily\bfseries\fontsize{30pt}{30pt}\selectfont#1}
   \else
-    \parbox[b]{\textwidth*\real{0.5}}{%
+    \parbox[b]{\textwidth*\real{0.75}}{%    %% This was \textwidth*0.5
       \renewcommand{\baselinestretch}{1.25}%
       \raggedright\bfseries\fontsize{30pt}{30pt}\selectfont#1}
 %      \raggedright\sffamily\bfseries\fontsize{30pt}{30pt}\selectfont#1}
