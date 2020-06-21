@@ -43,7 +43,6 @@
 %% ==LOAD PREREQUISITES=======================================================
 \LoadClass[12pt,a4paper]{book}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{fontspec}
 \RequirePackage{ifthen,calc}
 \RequirePackage{fancyhdr}
 
@@ -56,22 +55,29 @@
 %% Need to include a \IfFontExistsTF{...
 %% dl from https://fontpair.co/downloads/Alegreya%20Sans%20and%20Alegreya.zip
 %% ---------------------------------------------------------------------------
-\setmainfont{Alegreya}[
-    Ligatures=TeX,
-    UprightFont = *-Regular,
-    ItalicFont = *-Italic,
-%    SmallCapsFont = AlegreyaSC-Regular.otf, % Can't get this to work
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic
-]
+% Fall-back fonts when not using fontspec
+%\RequirePackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage{helvet,mathptmx}
 
-\setsansfont{AlegreyaSans}[
-    Ligatures=TeX,
-    UprightFont = *-Regular,
-    ItalicFont = *-Italic,
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic
-]
+%\setmainfont{Alegreya}[
+%    Ligatures=TeX,
+%    UprightFont = *-Regular,
+%    ItalicFont = *-Italic,
+%%    SmallCapsFont = AlegreyaSC-Regular.otf, % Can't get this to work
+%    BoldFont = *-Bold,
+%    BoldItalicFont = *-BoldItalic
+%]
+%
+%\setsansfont{AlegreyaSans}[
+%    Ligatures=TeX,
+%    UprightFont = *-Regular,
+%    ItalicFont = *-Italic,
+%    BoldFont = *-Bold,
+%    BoldItalicFont = *-BoldItalic
+%]
+
+
 
 %% -- Define page margins etc ------------------------------------------------
 %% University of York requirements are:
@@ -86,8 +92,11 @@
             headheight=10mm,
             footskip=20mm+1ex]{geometry}
 
+%adjust line spacing 
+\renewcommand{\baselinestretch}{1.25}
+
 %%% TODO: Sort out header and footer lengths
-% \raggedbottom
+\raggedbottom
 
 %% --Define some marco shortcuts----------------------------------------------
 
@@ -138,9 +147,9 @@
 \bfseries
 \begin{center}
 \vspace*{3cm}
-{\bfseries\fontsize{30pt}{30pt}\selectfont\@title\unskip\strut\par}
+{\bfseries\fontsize{25pt}{25pt}\selectfont\@title\unskip\strut\par}
 \vspace{2cm}
-{\bfseries\fontsize{30pt}{30pt}\selectfont\@author\unskip\strut\par}
+{\bfseries\fontsize{25pt}{25pt}\selectfont\@author\unskip\strut\par}
 \vspace{4cm minus 2cm}
 \ifthenelse{%
     \equal{\@degree}{undefined}}%
