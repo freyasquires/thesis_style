@@ -319,5 +319,15 @@
     \hb@xt@1.8em{\hss\@makefnmark}#1}
 
 
+%% --Chemical Reaction (equation) Environment--------------------------
+%% from https://latex.org/forum/viewtopic.php?t=10299
+\newcounter{react}
+\newenvironment{reaction}
+   {\stepcounter{react}%
+     \addtocounter{equation}{-1}%
+     \renewcommand\theequation{\arabic{react}}\equation}
+   {\endequation}
+
+
 \endinput
 %% ==EOF===============================================================
