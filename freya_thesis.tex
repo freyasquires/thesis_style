@@ -6,6 +6,7 @@
 
 \usepackage{lettrine}   % \lettrine{F}{irst}
 \usepackage{titlesec}
+%\usepackage{natbib}
 % Installed
 % texlive-luatex
 % texlive-latex-recommended
@@ -38,12 +39,12 @@
 \include{freya_thesis-01}
 \include{freya_thesis-02}
 %\include{gn_intro}
-\include{freya_thesis-04}
-\include{freya_thesis-bib}
+
+
 
 \appendix
 \chapter{Description of words}
-The following table describes some words that are used in this thesis.
+The following table describes some words that are used in this thesis~\cite{RN327}.
 
 \chapter{Some quicklooks}
 \section{Quicklooks for me}
@@ -52,6 +53,7 @@ Here are some quicklooks just for me...
 \section{Quicklooks for you}
 These quicklooks are for you (but I sneaked a quick look!).
 
-
+\bibliography{journal-abbrevname,bib_test}
+\bibliographystyle{plain}
 
 \end{document}
