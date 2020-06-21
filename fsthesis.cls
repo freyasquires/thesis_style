@@ -35,7 +35,7 @@
 
 %% ==DEFINE OPTIONS===========================================================
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 %- All user-defined options are passed to book.cls
 
 \ProcessOptions\relax
@@ -43,9 +43,12 @@
 %% ==LOAD PREREQUISITES=======================================================
 \LoadClass[12pt,a4paper]{book}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{fontspec}
 \RequirePackage{ifthen,calc}
 \RequirePackage{fancyhdr}
+\RequirePackage[pdftex,%
+                hidelinks=true,%
+                pagebackref=true,%
+                linktoc=all]{hyperref}
 
 %% ==MAIN CODE================================================================
 
@@ -56,22 +59,24 @@
 %% Need to include a \IfFontExistsTF{...
 %% dl from https://fontpair.co/downloads/Alegreya%20Sans%20and%20Alegreya.zip
 %% ---------------------------------------------------------------------------
-\setmainfont{Alegreya}[
-    Ligatures=TeX,
-    UprightFont = *-Regular,
-    ItalicFont = *-Italic,
-%    SmallCapsFont = AlegreyaSC-Regular.otf, % Can't get this to work
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic
-]
+% \RequirePackage{fontspec}
+% \setmainfont{Alegreya}[
+%     Ligatures=TeX,
+%     UprightFont = *-Regular,
+%     ItalicFont = *-Italic,
+% %    SmallCapsFont = AlegreyaSC-Regular.otf, % Can't get this to work
+%     BoldFont = *-Bold,
+%     BoldItalicFont = *-BoldItalic
+% ]
 
-\setsansfont{AlegreyaSans}[
-    Ligatures=TeX,
-    UprightFont = *-Regular,
-    ItalicFont = *-Italic,
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic
-]
+% \setsansfont{AlegreyaSans}[
+%     Ligatures=TeX,
+%     UprightFont = *-Regular,
+%     ItalicFont = *-Italic,
+%     BoldFont = *-Bold,
+%     BoldItalicFont = *-BoldItalic
+% ]
+
 
 %% -- Define page margins etc ------------------------------------------------
 %% University of York requirements are:
@@ -208,23 +213,13 @@
     \renewcommand{\headrulewidth}{0pt} % and the line
 }
 
-
-% % Redefinition of \cleardoublepage so that is fancyhdr style empty
-% % This is from the fancyhdr doc.
-% This breaks the class file!
-% \makeatletter
-% \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-% \hbox{}
-% \vspace*{\fill}
-% \begin{center}
-% %This page intentionally contains only this sentence.
-% \end{center}
-% \vspace{\fill}
-% \thispagestyle{plain}
-% \newpage
-% \if@twocolumn\hbox{}\newpage\fi\fi\fi}
-% \makeatother
-
+% Redefinition of \cleardoublepage so that is fancyhdr style empty
+% Note that the recipe in the fancyhdr docs breaks this class
+\let\oldcleardoublepage = \cleardoublepage
+\renewcommand{\cleardoublepage}{
+  \thispagestyle{plain}
+  \oldcleardoublepage
+}
 
 %% --Float captions-----------------------------------------------------------
 %- Makes figure ? bold san serif and the text single spaced
@@ -258,7 +253,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                             {-3.25ex\@plus -1ex \@minus -.2ex}%
                             {1.5ex \@plus .2ex}%
-                            {\raggedright\sffamily\normalsize\bfseries}}%
+                            {\raggedright\rmfamily\normalsize\bfseries}}%
                            % {\raggedright\sffamily\normalsize\bfseries}}%
 
 %% --Chapter headings---------------------------------------------------------
