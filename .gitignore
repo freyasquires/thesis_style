@@ -28,9 +28,15 @@
 *.bbl
 *.bcf
 *.blg
+*.brf
 *-blx.aux
 *-blx.bib
 *.run.xml
+
+## Glossaries auxiliary files:
+*.acn
+*.acr
+*.ist
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
