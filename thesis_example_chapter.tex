@@ -1,0 +1,15 @@
+
+\chapter{How to compile this thesis}
+\section{A section}
+
+\lettrine{C}{ompiling} this is pretty straightforward but just in case you haven't used \texttt{glossaries} before, the procedure is below. There is the option in the class file to use either Lua\LaTeX or pdf\LaTeX. The difference being the use of font types. Lau\LaTeX allows the use of the \texttt{fontspec} package and any fonts installed on the user's machine. If for some reason this doesn't work however, then you should use pdf\LaTeX with the \texttt{helvet} and \texttt{mathptmx} packages.
+\par
+Compiling goes something like this;
+\begin{lstlisting}[language=bash, caption=How to compile this example]
+$ pdflatex thesis_example.tex
+$ bibtex thesis_example
+$ makeglossaries thesis_example
+$ pdflatex thesis_example.tex
+$ pdflatex thesis_example.tex
+\end{lstlisting}
+
