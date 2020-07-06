@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Example thesis LaTeX document using the fsthesis class
+%%
+%% Compile with pdflatex
+%% However there is option that requires LuaLaTex in the class definition file
+%%
+
+\documentclass{fsthesis}
+
+\usepackage{lettrine}   % \lettrine{F}{irst}
+\usepackage{titlesec}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage[acronym,toc,nomain]{glossaries}
+
+% Installed
+% texlive-luatex
+% texlive-latex-recommended
+%   fontspec
+% texlive-latex-extra
+%   lettrine
+
+% Create the acronyms using a seperate file of definitions
+\makeglossaries
+\include{acronym_def}
+
+\includeonly{thesis_chapter_test}
+
+\begin{document}
+\frontmatter
+% Create the titlepage
+\title{This is my Thesis\\ \& it's very good...}
+\author{Fred Fred}				% author
+%\degree{Diploma}				% defaults to 'PhD'
+%\university{University of Life}% defaults to 'University of York'
+%\dept{School of Hard Knocks}	% defaults to 'Department of Chemistry'
+\date{\today}%May 2018}         % standard LaTeX \date behaviour
+\maketitle
+
+\tableofcontents
+%\pagebreak
+
+\mainmatter
+
+
+\chapter[Testing chapter]{This is a test chapter and so has areally long title}
+
+\typeout{****}
+\typeout{chaptername is \chaptername}
+\typeout{textwidth is \the\textwidth}
+\typeout{chapboxlength is \the\chapboxlength}
+\typeout{chaptitlelength is \the\chaptitlelength}
+\typeout{****}
+
+\lettrine{Q}{uam} at parturient a diam ultricies nec phasellus augue scelerisque nec tortor a fringilla a a ullamcorper est ultrices mattis a. Consectetur ac ligula at in adipiscing ad sagittis diam quis scelerisque a mauris etiam dignissim mus enim leo. Per congue \textbf{semper nisl nisl mi scelerisque} porta parturient dignissim ad consectetur \textit{scelerisque cubilia vulputate ante} parturient et eu leo. \textsf{Dis mi euismod lacus pulvinar} curae tortor condimentum mattis enim. \textsc{Condimentum fringilla vestibulum aliquam} elit lobortis mi a ut egestas augue a nunc mollis ultrices. Nec at mollis nostra ullamcorper nam leo commodo cursus adipiscing adipiscing blandit per ut a curae vel eleifend adipiscing vitae justo convallis.
+
+\section{Introduction}
+Sit vitae montes dictumst quam \acrfull{WACL} ipsum neque consectetur non litora nisl amet et venenatis egestas ad. Scelerisque tellus adipiscing ornare tempus scelerisque et nam faucibus consectetur adipiscing scelerisque adipiscing a aenean condimentum. Vestibulum \acrshort{WACL} vestibulum \acrfull{FAAM} integer fermentum nam tristique a proin accumsan posuere parturient iaculis parturient aliquam lacinia a sagittis curae condimentum convallis. Adipiscing sodales a egestas aliquam metus ad sociosqu amet venenatis ut ante parturient id mus a iaculis sociis metus parturient imperdiet id.
+\par
+{\fontsize{20}{25}\selectfont Auctor a ut ut inceptos parturient} torquent metus condimentum a non risus \acrlong{WACL} eu rhoncus consectetur phasellus ultricies arcu sit nunc condimentum nunc amet tristique erat eu ridiculus. Phasellus elementum massa ridiculus \acrfull{bob} ultrices congue nascetur rhoncus eros a sagittis varius aenean cras egestas eu a augue laoreet cum cras phasellus eget hac nostra. \acrshort{bob} in vestibulum porta sapien scelerisque a suspendisse penatibus augue sodales donec egestas adipiscing vitae platea semper urna parturient cubilia phasellus donec id mauris a lorem a pretium parturient dictumst.
+
+\include{thesis_chapter_test}
+
+
+\appendix
+\chapter{A reaction and an equation}
+Following are a chemical reaction and then a mathematical equation. Such complicated matters are best described by~\citet{article-01}.
+\begin{reaction}
+\label{re:A}
+A +B \rightarrow C
+\end{reaction}
+\begin{equation}
+\label{eq:A}
+A +B = C
+\end{equation}
+
+\chapter{Some quicklooks}
+\section{Quicklooks for me}
+Here are some quicklooks just for me...\citep{book-01}
+\begin{reaction}
+\label{re:B}
+AB+B \rightarrow D
+\end{reaction}
+% \begin{reaction*}
+% \label{re:B}
+% O+E \rightarrow 2E
+% \end{reaction*}
+
+\section{Quicklooks for you}
+These quicklooks are for you (but I sneaked a quick look!). Here I am referencing reactions~\ref{re:A} and \ref{re:B} along with equation~\ref{eq:A}.
+
+
+\printglossary[type=\acronymtype]
+
+\bibliography{journal-abbrevname,thesis_refs}
+\bibliographystyle{abbrvnat}
+
+\end{document}
