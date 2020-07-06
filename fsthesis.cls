@@ -6,18 +6,21 @@
 %%
 %% This class has been written as a add-on to the class 'book.cls'.
 %% book.cls is called by this file and certain features modified.
-%% This class uses the fontspec package and therefore must be compiled
-%% with XeLaTeX (untested) or LuaLaTeX.
+%% There is an (commented) option that uses the fontspec package to load
+%% TrueType fonts, if used the document must be compiled with XeLaTeX
+%% (untested) or LuaLaTeX. Otherwise use pdfLaTeX.
 %%
 %% Modified items:
-%%	margins and interline spacing (York requirements)
-%%	default fonts to ...
-%%	chapter headings
-%%	section/subsection/subsubsection font
-%%	header and footer font
-%%	font and spacing of float captions
-%%	spacing of footnotes
-%%  Definition of title page
+%%  margins and interline spacing (York requirements)
+%%  default fonts to ...
+%%  title page defined
+%%  Bibliography renamed References
+%%  headers/footers redefined
+%%  font and spacing of float captions
+%%  section/subsection/subsubsection font
+%%  chapter headings
+%%  spacing of footnotes
+%%  define reaction environment based on equation with different numbering
 %
 % HISTORY
 %
@@ -42,7 +45,6 @@
 
 %% ==LOAD PREREQUISITES=======================================================
 \LoadClass[12pt,a4paper]{book}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{ifthen,calc}
 \RequirePackage{fancyhdr}
 \RequirePackage[pdftex,%
@@ -62,8 +64,8 @@
 
 % Fall-back fonts when not using fontspec
 %\RequirePackage{fontspec}
-\usepackage[T1]{fontenc}
-\usepackage{helvet,mathptmx}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{helvet,mathptmx}
 
 %\setmainfont{Alegreya}[
 %    Ligatures=TeX,
@@ -179,6 +181,10 @@
 }
 
 
+% -- Rename bibliography to References ---------------------------------------
+\renewcommand{\bibname}{References}
+
+
 %% -- Remove dotted lines from table of contents -----------------------------
 
 %% NOTE: This breaks the class file!!
@@ -229,7 +235,7 @@
 }
 
 %% --Float captions-----------------------------------------------------------
-%- Makes figure ? bold san serif and the text single spaced
+%- Makes figure ? bold serif and the text single spaced
 \setlength\abovecaptionskip{0\p@}%	was 10
 \setlength\belowcaptionskip{5\p@}
 \long\def\@makecaption#1#2{%
