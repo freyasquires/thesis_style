@@ -47,6 +47,7 @@
 \LoadClass[12pt,a4paper]{book}
 \RequirePackage{ifthen,calc}
 \RequirePackage{fancyhdr}
+\PassOptionsToPackage{hyphens}{url}
 \RequirePackage[pdftex,%
                 hidelinks=true,%
                 pagebackref=true,%
@@ -181,8 +182,22 @@
 }
 
 
-% -- Rename bibliography to References ---------------------------------------
+%% -- Rename bibliography to References ---------------------------------------
 \renewcommand{\bibname}{References}
+
+
+%% -- Add some `pretty` formatting to the backreferences in References --------
+%% from https://tex.stackexchange.com/questions/183702/formatting-back-references-in-bibliography-bibtex
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+    \ifcase #1%
+          \or [Page~#2.]%
+          \else [Pages~#2.]%
+    \fi%
+    }
+
+%similar for glossaries is here
+%https://tex.stackexchange.com/questions/256152/glossaries-modified-page-list-back-references
 
 
 %% -- Remove dotted lines from table of contents -----------------------------
