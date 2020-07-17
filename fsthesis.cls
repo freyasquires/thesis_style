@@ -141,9 +141,15 @@
 % University. If not given default is 'University of York'
 \newcommand*{\university}[1]{\gdef\@university{#1}}
 \newcommand*{\@university}{undefined}
-% University department/centre. If not given default is WACL.
+% University department/centre. If not given default is 'Chemistry'.
 \newcommand*{\dept}[1]{\gdef\@dept{#1}}
 \newcommand*{\@dept}{undefined}
+% Redefine date format to month and year. Note that this will affect the entire document.
+% from https://tex.stackexchange.com/questions/112932/today-month-as-text#112935
+\renewcommand{\today}{%
+\ifcase \month \or January\or February\or March\or April\or May%
+\or June\or July\or August\or September\or October\or November\or December\fi%
+\space\number\year}
 
 
 %% -- Create the document titlepage ------------------------------------------
@@ -169,7 +175,7 @@
 \vspace{1cm}
 \ifthenelse{%
     \equal{\@dept}{undefined}}%
-    {\Large{WACL\\}}%
+    {\Large{Chemistry\\}}%
     {\Large\@dept\\}
 \vspace{1cm}
 \@date\unskip\\
@@ -198,6 +204,7 @@
 
 %similar for glossaries is here
 %https://tex.stackexchange.com/questions/256152/glossaries-modified-page-list-back-references
+% \renewcommand*{\glsnumberformat}[1]{ [Page~#1.]}
 
 
 %% -- Remove dotted lines from table of contents -----------------------------
@@ -251,6 +258,9 @@
 
 %% --Float captions-----------------------------------------------------------
 %- Makes figure ? bold serif and the text single spaced
+
+%% THIS DOES NOT WORK
+
 \setlength\abovecaptionskip{0\p@}%	was 10
 \setlength\belowcaptionskip{5\p@}
 \long\def\@makecaption#1#2{%
