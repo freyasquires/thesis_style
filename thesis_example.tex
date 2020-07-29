@@ -9,10 +9,11 @@
 
 \usepackage{lettrine}   % \lettrine{F}{irst}
 \usepackage{titlesec}
+\usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{listings}
 \usepackage[acronym,toc,nomain]{glossaries}
-\renewcommand*{\glsnumberformat}[1]{[Page~#1.]}
+
 % Installed
 % texlive-luatex
 % texlive-latex-recommended
@@ -57,7 +58,16 @@
 \section{Introduction}
 Sit vitae montes dictumst quam \acrfull{WACL} ipsum neque consectetur non litora nisl amet et venenatis egestas ad. Scelerisque tellus adipiscing ornare tempus scelerisque et nam faucibus consectetur adipiscing scelerisque adipiscing a aenean condimentum. Vestibulum \acrshort{WACL} vestibulum \acrfull{FAAM} integer fermentum nam tristique a proin accumsan posuere parturient iaculis parturient aliquam lacinia a sagittis curae condimentum convallis. Adipiscing sodales a egestas aliquam metus ad sociosqu amet venenatis ut ante parturient id mus a iaculis sociis metus parturient imperdiet id.
 \par
-{\fontsize{20}{25}\selectfont Auctor a ut ut inceptos parturient} torquent metus condimentum a non risus \acrlong{WACL} eu rhoncus consectetur phasellus ultricies arcu sit nunc condimentum nunc amet tristique erat eu ridiculus. Phasellus elementum massa ridiculus \acrfull{bob} ultrices congue nascetur rhoncus eros a sagittis varius aenean cras egestas eu a augue laoreet cum cras phasellus eget hac nostra. \acrshort{bob} in vestibulum porta sapien scelerisque a suspendisse penatibus augue sodales donec egestas adipiscing vitae platea semper urna parturient cubilia phasellus donec id mauris a lorem a pretium parturient dictumst.
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{ctan_lion}
+\caption[Short caption of lion]{CTAN lion drawing by Duane Bibby. Integer fermentum nam tristique a proin accumsan posuere parturient iaculis parturient aliquam lacinia a sagittis curae condimentum convallis. Adipiscing sodales a egestas aliquam metus ad sociosqu}
+\label{fig:lion}
+\end{figure}
+{\fontsize{20}{25}\selectfont Auctor a ut ut inceptos parturient} torquent metus condimentum a non risus \acrlong{WACL} eu rhoncus consectetur phasellus ultricies arcu sit nunc condimentum nunc amet tristique erat eu ridiculus. Phasellus elementum massa ridiculus \acrfullpl{bob} ultrices congue nascetur rhoncus eros a sagittis varius aenean cras egestas eu a augue laoreet cum cras phasellus eget hac nostra. \acrshort{bob} in vestibulum porta sapien scelerisque a suspendisse penatibus augue sodales donec egestas adipiscing vitae platea semper urna parturient cubilia, see~\ref{fig:lion}, phasellus donec id mauris a lorem a pretium parturient dictumst.
+\par
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie tempus nibh ut consectetur. Nunc imperdiet porta urna id porta. Aliquam quis consectetur est. Suspendisse sit amet mattis diam, vel bibendum dolor. Sed vitae est nec leo hendrerit convallis id eu ipsum. Suspendisse lectus justo, scelerisque id interdum in, egestas nec erat. Pellentesque imperdiet sapien quis neque porttitor, quis lobortis ex bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed lacinia posuere mi ac consectetur. Morbi vitae neque quis massa dapibus tincidunt. Nullam vestibulum tincidunt enim, in finibus urna accumsan vitae. Duis hendrerit ipsum a sapien dictum malesuada. Cras vehicula aliquam ornare. Quisque justo sapien, porta id fringilla at, interdum et felis.
+
 
 \include{thesis_example_chapter}
 
