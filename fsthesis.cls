@@ -108,6 +108,23 @@
 
 \newcommand{\etal}{~\textit{et\,al.}}
 
+%% --Redefine mainmatter so that page numbering is not reset-----------
+\makeatletter
+\renewcommand\frontmatter{%
+  \cleardoublepage
+  \@mainmatterfalse
+  %\pagenumbering{roman}% Don't reset
+}
+\renewcommand\mainmatter{%
+  \cleardoublepage
+  \@mainmattertrue
+  %\pagenumbering{arabic}% Don't reset
+}
+\makeatother
+%\makeatletter
+%\def\pagenumbering#1{%
+ % \gdef\thepage{\csname @#1\endcsname \c@page}}
+%\makeatother
 
 %% -- Define Title Page ------------------------------------------------------
 %% The title page of every volume shall give the following information in the
