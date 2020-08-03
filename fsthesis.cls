@@ -274,18 +274,19 @@
 }
 
 %% --Float captions-----------------------------------------------------------
-%- Makes figure ? bold serif and the text single spaced
+% Makes caption text single spaced
+%% Note that this redefines the makecaption command, if packages such as
+% caption are used then this will be overwritten
 
-%% THIS DOES NOT WORK
-
-\setlength\abovecaptionskip{0\p@}%	was 10
-\setlength\belowcaptionskip{5\p@}
+%\setlength\abovecaptionskip{0\p@}%	was 10
+%\setlength\belowcaptionskip{5\p@}
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
   \renewcommand{\baselinestretch}{1}\selectfont
-  \sbox\@tempboxa{\small{{\sffamily\textbf{#1 }} #2}}%
+  \sbox\@tempboxa{#1: #2}%
+%  \sbox\@tempboxa{\small{{\sffamily\textbf{#1 }} #2}}%
   \ifdim \wd\@tempboxa >\hsize
-    {\small{\sffamily\textbf{#1 }} #2}\par%
+    #1: #2\par%
   \else
     \global \@minipagefalse
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
@@ -293,7 +294,7 @@
   \vskip\belowcaptionskip}
 
 %% --Section headings---------------------------------------------------------
-%- Makes headings all bold san serif of different sizes
+%- Makes headings all bold serif of different sizes
 
 \renewcommand\section{\@startsection{section}{1}{\z@}%
                       {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -373,7 +374,7 @@
 \newenvironment{reaction}
    {\stepcounter{react}%
      \addtocounter{equation}{-1}%
-     \renewcommand\theequation{\arabic{react}}\equation}
+     \renewcommand\theequation{R\arabic{react}}\equation}
    {\endequation}
 
 
